@@ -67,7 +67,6 @@
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:textColor="@color/white"
-                android:onEditorAction="@{vm.onSearchAction}"
                 app:addTextChangedListener="@{vm.usernameEditTextWatcher}"/>
 
         </RelativeLayout>

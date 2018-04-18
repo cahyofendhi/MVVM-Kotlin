@@ -4,6 +4,9 @@ import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import bcr.mvvm_kotlin.R
 import bcr.mvvm_kotlin.databinding.ActivityMainBinding
 import bcr.mvvm_kotlin.helper.Util
@@ -22,6 +25,21 @@ class MainActivity : AppCompatActivity(), MainViewModel.RepositoryListener {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setupBinding()
         setupRecycleView()
+        activityView()
+    }
+
+    private fun activityView() {
+        binding.editTextUsername?.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+            override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    val username = binding.editTextUsername.text
+                    if (username.isNotEmpty())
+                        viewModel.loadRepositories(username.toString())
+                    return true
+                }
+                return false
+            }
+        })
     }
 
     private fun setupBinding() {

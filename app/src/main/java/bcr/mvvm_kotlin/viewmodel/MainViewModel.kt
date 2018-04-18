@@ -43,17 +43,6 @@ class MainViewModel(var context: Context?, var repositoryListener: RepositoryLis
 
     lateinit var editTextUsernameValue: String
 
-
-    fun onSearchAction(view: TextView, actionId: Int, event: KeyEvent): Boolean {
-        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-            val username = view.text.toString()
-            if (username.isNotEmpty())
-                loadRepositories(username)
-            return true
-        }
-        return false
-    }
-
     fun onClickSearch(view: View) {
         loadRepositories(editTextUsernameValue)
     }
@@ -74,7 +63,7 @@ class MainViewModel(var context: Context?, var repositoryListener: RepositoryLis
         context = null
     }
 
-    private fun loadRepositories(username : String) {
+    fun loadRepositories(username : String) {
         isProgress.set(true)
         isEmpty.set(true)
         isInfo.set(false)
