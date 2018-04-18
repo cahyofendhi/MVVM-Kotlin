@@ -72,6 +72,7 @@ class MainViewModel(var context: Context?, var repositoryListener: RepositoryLis
     }
 
     override fun onError(message: String) {
+        isProgress.set(false)
         infoMessage.set(message)
         isInfo.set(true)
     }
@@ -89,6 +90,7 @@ class MainViewModel(var context: Context?, var repositoryListener: RepositoryLis
 
     override fun onSuccess(value: List<Repository>?) {
         this.repositories = value
+        isProgress.set(false)
     }
 
 }
