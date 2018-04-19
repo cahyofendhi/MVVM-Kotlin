@@ -24,6 +24,10 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -45,4 +49,9 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
     kapt "com.android.databinding:compiler:$android_plugin_version"
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.1")
+    testCompile 'io.rest-assured:rest-assured:3.0.7'
+    compile 'io.rest-assured:json-path:3.0.7'
+    compile 'io.rest-assured:xml-path:3.0.7'
+
 }
